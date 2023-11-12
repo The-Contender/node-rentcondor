@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
       return;
     }
     // Send the rows as the response
+    console.log(rows); //update
     res.send(rows);
   });
 });
