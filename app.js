@@ -22,7 +22,7 @@ connection.connect();
 
 app.get("/", (req, res) => {
   // Query to select the first 10 rows from 'properties' table
-  connection.query("SELECT * FROM properties LIMIT 25", (err, rows, fields) => {
+  connection.query("SELECT * FROM properties", (err, rows, fields) => {
     if (err) {
       // Proper error handling
       console.error("Error while fetching data: ", err);
