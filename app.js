@@ -22,20 +22,17 @@ connection.connect();
 
 app.get("/", (req, res) => {
   // Query to select the first 10 rows from 'properties' table
-  connection.query(
-    "SELECT * FROM properties LIMIT 100",
-    (err, rows, fields) => {
-      if (err) {
-        // Proper error handling
-        console.error("Error while fetching data: ", err);
-        res.status(500).send("Error while fetching data");
-        return;
-      }
-      // Send the rows as the response
-      //console.log(rows); //update
-      res.send(rows);
+  connection.query("SELECT * FROM properties LIMIT 10", (err, rows, fields) => {
+    if (err) {
+      // Proper error handling
+      console.error("Error while fetching data: ", err);
+      res.status(500).send("Error while fetching data");
+      return;
     }
-  );
+    // Send the rows as the response
+    //console.log(rows); //update
+    res.send(rows);
+  });
 });
 
 app.listen(port, () => {
