@@ -15,6 +15,7 @@ const connection = mysql.createConnection(process.env.DATABASE_URL);
 const connection2 = mysql.createConnection(process.env.DEV_DATABASE_URL);
 
 connection.connect();
+connection2.connect();
 
 app.get("/", (req, res) => {
   // Query to select the first 10 rows from 'properties' table
