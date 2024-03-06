@@ -17,7 +17,7 @@ const connection2 = mysql.createConnection(process.env.DEV_DATABASE_URL);
 connection.connect();
 connection2.connect();
 
-app.get("/app", (req, res) => {
+app.get("/", (req, res) => {
   // Query to select the first 10 rows from 'properties' table
   connection.query("SELECT * FROM properties", (err, rows, fields) => {
     if (err) {
