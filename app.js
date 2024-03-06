@@ -12,12 +12,28 @@ app.use(compression()); // Use compression
 
 const mysql = require("mysql2");
 const connection = mysql.createConnection(process.env.DATABASE_URL);
+const connection2 = mysql.createConnection(process.env.DEV_DATABASE_URL);
 
 connection.connect();
 
 app.get("/", (req, res) => {
   // Query to select the first 10 rows from 'properties' table
   connection.query("SELECT * FROM properties", (err, rows, fields) => {
+    if (err) {
+      // Proper error handling
+      console.error("Error while fetching data: ", err);
+      res.status(500).send("Error while fetching data");
+      return;
+    }
+    // Send the rows as the response
+    //console.log(rows); //update
+    res.send(rows);
+  });
+});
+
+app.get("/dev", (req, res) => {
+  // Query to select the first 10 rows from 'properties' table
+  connection2.query("SELECT * FROM properties", (err, rows, fields) => {
     if (err) {
       // Proper error handling
       console.error("Error while fetching data: ", err);
